@@ -4,11 +4,10 @@ class Overview extends Component {
     // eslint-disable-next-line no-useless-constructor
     constructor(props) {
         super(props);
-        console.log(this.props)
 
     }
 
-    handleClickEvent = (id) => {
+    handleDeleteTaskEvent = (id) => {
         this.props.deleteFunction(id)
     }
 
@@ -68,7 +67,7 @@ class Overview extends Component {
                     return b.priority - a.priority;
                 });
             default:
-                console.log("ERROR - FILTER METHOD NOT RECOGNISED: " + this.props.filter)
+                console.log("ERROR - SORT METHOD NOT RECOGNISED: " + this.props.filter)
                 return tasks;
         }
     }
@@ -81,14 +80,12 @@ class Overview extends Component {
         // sort by sort method
         myTasks = this.sortTasks(myTasks);
 
-
-
         return (
             <div className={"overview-container"}>
                 {myTasks.map((t) => {
                     return (
                         <div key={t.id} className={"task-item"}>
-                            <button type={"button"} id={t.id} onClick={()=>this.handleClickEvent(t.id)}>Click to Complete!</button>
+                            <button type={"button"} id={t.id} onClick={()=>this.handleDeleteTaskEvent(t.id)}>Click to Complete!</button>
                             <p>{t.text}</p>
                             <p>{t.date}</p>
                             <div>{t.priority}</div>

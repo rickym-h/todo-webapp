@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component, useEffect} from "react";
 import Overview from "./components/Overview"
 import Options from "./components/Options"
 import uniqid from "uniqid";
@@ -21,10 +21,22 @@ class App extends Component {
 
     };
 
-    // todo if localstorage valid, sync 'tasks' with localstorage
-
+    // if localstorage valid, sync 'tasks' with localstorage
+    if (this.isLocalStorageAvailable()) {
+      if (window.localStorage.getItem('tasks')) {
+        console.log("SETTING TASKS TO : " + JSON.parse(window.localStorage.getItem('tasks')));
+        try {
+          this.state.tasks = JSON.parse(window.localStorage.getItem('tasks'));
+        } catch {
+          console.log("Failed to load localstorage data...")
+          this.state.tasks = [];
+        }
+      }
+    }
     //this.deleteTask = this.deleteTask.bind(this);
   }
+
+
 
   handleTextChange = (e) => {
     this.setState({
@@ -98,7 +110,24 @@ class App extends Component {
     });
   }
 
+  isLocalStorageAvailable =() => {
+    var test = 'test';
+    try {
+      localStorage.setItem(test, test);
+      localStorage.removeItem(test);
+      return true;
+    } catch(e) {
+      return false;
+    }
+  }
+
   render() {
+
+    // set localstorage
+    if (this.isLocalStorageAvailable()) {
+      window.localStorage.setItem('tasks', JSON.stringify(this.state.tasks));
+    }
+
     return (
         <div id={"main"}>
           <div id={"optionsPane"}>
