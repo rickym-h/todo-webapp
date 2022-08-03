@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Overview from "./components/Overview"
 import uniqid from "uniqid";
+import './Styles.css'
 
 class App extends Component {
   constructor() {
@@ -14,10 +15,12 @@ class App extends Component {
       tasks: [],
     };
 
-    this.deleteTask = this.deleteTask.bind(this);
+    // todo if localstorage valid, sync with localstorage
+
+    //this.deleteTask = this.deleteTask.bind(this);
   }
 
-  handeChange = (e) => {
+  handleChange = (e) => {
     this.setState({
       task: {
         text: e.target.value,
@@ -34,7 +37,11 @@ class App extends Component {
         text: '',
         id: uniqid()
       },
+    }, () => {
+      console.log(this.state)
+      // todo sync with localstorage
     });
+
   };
 
   deleteTask = (taskID) => {
@@ -47,17 +54,22 @@ class App extends Component {
 
   render() {
     return (
-        <div>
-          <form onSubmit={this.onSubmitTask}>
-            <label htmlFor={"taskInput"}>New Task</label>
-            <input
-                type={"text"}
-                id={"taskInput"}
-                value={this.state.task.text}
-                onChange={this.handeChange}/>
-            <button type={"submit"}>Add Task</button>
-          </form>
-          <Overview tasks={this.state.tasks} deleteFunction={this.deleteTask}/>
+        <div id={"main"}>
+          <div id={"optionsPane"}>
+            <p>PLACE OPTIONS HERE</p>
+          </div>
+          <div id={"taskPane"}>
+            <Overview tasks={this.state.tasks} deleteFunction={this.deleteTask}/>
+            <form onSubmit={this.onSubmitTask} id={"newTaskInterface"}>
+              <label htmlFor={"taskInput"}>New Task</label>
+              <input
+                  type={"text"}
+                  id={"taskInput"}
+                  value={this.state.task.text}
+                  onChange={this.handleChange}/>
+              <button type={"submit"}>Add Task</button>
+            </form>
+          </div>
         </div>
     )
   };

@@ -13,10 +13,10 @@ class Overview extends Component {
 
     render() {
         return (
-            <div>
+            <div className={"overview-container"}>
                 {this.props.tasks.map((t) => {
                     return (
-                        <div key={t.id}>
+                        <div key={t.id} className={"task-item"}>
                             <button type={"button"} id={t.id} onClick={()=>this.handleClickEvent(t.id)}>Click to Complete!</button>
                             <p>{t.text}</p>
                             <p>DATE</p>
