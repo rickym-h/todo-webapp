@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Overview from "./components/Overview"
+import Options from "./components/Options"
 import uniqid from "uniqid";
 import './Styles.css'
 
@@ -15,6 +16,9 @@ class App extends Component {
         id: uniqid()
       },
       tasks: [],
+      filter: "all",
+      sort: "creation",
+
     };
 
     // todo if localstorage valid, sync 'tasks' with localstorage
@@ -58,7 +62,7 @@ class App extends Component {
   onSubmitTask = (e) => {
     e.preventDefault();
     this.setState({
-      tasks: this.state.tasks.concat(this.state.task),
+      tasks: this.state.tasks.concat({...this.state.task, ...{creationDate: new Date()}}),
       task: {
         text: '',
         date: '',
@@ -80,11 +84,27 @@ class App extends Component {
     })
   }
 
+  changeSort = (sortMethod) => {
+    console.log("Changing sort method to: " + sortMethod);
+    this.setState({
+      sort: sortMethod,
+    });
+  }
+
+  changeFilter = (filterMethod) => {
+    console.log("Changing filter method to: " + filterMethod);
+    this.setState({
+      filter: filterMethod,
+    });
+  }
+
   render() {
     return (
         <div id={"main"}>
           <div id={"optionsPane"}>
-            <p>PLACE OPTIONS HERE</p>
+
+            <Options updateSort={this.changeSort} updateFilter={this.changeFilter}/>
+
           </div>
           <div id={"taskPane"}>
 
@@ -106,10 +126,11 @@ class App extends Component {
                   onChange={this.handleDateChange}
                 />
               <select onChange={this.handlePriorityChange}>
-                <option value="">No Priority</option>
-                <option value="low">Low</option>
-                <option value="med">Medium</option>
-                <option value="high">High</option>
+                <option value="0">No Priority</option>
+                <option value="1">Low</option>
+                <option value="2">Medium</option>
+                <option value="3">High</option>
+                <option value="4">ASAP</option>
               </select>
               <button type={"submit"}>Add Task</button>
             </form>
