@@ -10,20 +10,46 @@ class App extends Component {
     this.state = {
       task: {
         text: '',
+        date: '',
+        priority: '',
         id: uniqid()
       },
       tasks: [],
     };
 
-    // todo if localstorage valid, sync with localstorage
+    // todo if localstorage valid, sync 'tasks' with localstorage
 
     //this.deleteTask = this.deleteTask.bind(this);
   }
 
-  handleChange = (e) => {
+  handleTextChange = (e) => {
     this.setState({
       task: {
         text: e.target.value,
+        date: this.state.task.date,
+        priority: this.state.task.priority,
+        id: this.state.task.id,
+      },
+    });
+  };
+
+  handleDateChange = (e) => {
+    this.setState({
+      task: {
+        text: this.state.task.text,
+        date: e.target.value,
+        priority: this.state.task.priority,
+        id: this.state.task.id,
+      },
+    });
+  };
+
+  handlePriorityChange = (e) => {
+    this.setState({
+      task: {
+        text: this.state.task.text,
+        date: this.state.task.date,
+        priority: e.target.value,
         id: this.state.task.id,
       },
     });
@@ -35,6 +61,8 @@ class App extends Component {
       tasks: this.state.tasks.concat(this.state.task),
       task: {
         text: '',
+        date: '',
+        priority: '',
         id: uniqid()
       },
     }, () => {
@@ -59,14 +87,30 @@ class App extends Component {
             <p>PLACE OPTIONS HERE</p>
           </div>
           <div id={"taskPane"}>
+
             <Overview tasks={this.state.tasks} deleteFunction={this.deleteTask}/>
+
             <form onSubmit={this.onSubmitTask} id={"newTaskInterface"}>
               <label htmlFor={"taskInput"}>New Task</label>
               <input
                   type={"text"}
                   id={"taskInput"}
                   value={this.state.task.text}
-                  onChange={this.handleChange}/>
+                  onChange={this.handleTextChange}
+                  required={true}
+              />
+              <input
+                  type={"datetime-local"}
+                  id={"dateInput"}
+                  //value={this.state.task.date}
+                  onChange={this.handleDateChange}
+                />
+              <select onChange={this.handlePriorityChange}>
+                <option value="">No Priority</option>
+                <option value="low">Low</option>
+                <option value="med">Medium</option>
+                <option value="high">High</option>
+              </select>
               <button type={"submit"}>Add Task</button>
             </form>
           </div>

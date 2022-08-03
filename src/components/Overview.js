@@ -19,8 +19,8 @@ class Overview extends Component {
                         <div key={t.id} className={"task-item"}>
                             <button type={"button"} id={t.id} onClick={()=>this.handleClickEvent(t.id)}>Click to Complete!</button>
                             <p>{t.text}</p>
-                            <p>DATE</p>
-                            <div>priority</div>
+                            <p>{t.date}</p>
+                            <div>{t.priority}</div>
                         </div>
                     );
                 })}
