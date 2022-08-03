@@ -1,6 +1,7 @@
-import React, {Component, useEffect} from "react";
+import React, {Component} from "react";
 import Overview from "./components/Overview"
 import Options from "./components/Options"
+import InfoTile from "./components/InfoTile";
 import uniqid from "uniqid";
 import './Styles.css'
 
@@ -12,7 +13,7 @@ class App extends Component {
       task: {
         text: '',
         date: '',
-        priority: '',
+        priority: '0',
         id: uniqid()
       },
       tasks: [],
@@ -24,7 +25,6 @@ class App extends Component {
     // if localstorage valid, sync 'tasks' with localstorage
     if (this.isLocalStorageAvailable()) {
       if (window.localStorage.getItem('tasks')) {
-        console.log("SETTING TASKS TO : " + JSON.parse(window.localStorage.getItem('tasks')));
         try {
           this.state.tasks = JSON.parse(window.localStorage.getItem('tasks'));
         } catch {
@@ -78,12 +78,9 @@ class App extends Component {
       task: {
         text: '',
         date: '',
-        priority: '',
+        priority: '0',
         id: uniqid()
       },
-    }, () => {
-      console.log(this.state)
-      // todo sync with localstorage
     });
 
   };
@@ -128,6 +125,14 @@ class App extends Component {
       window.localStorage.setItem('tasks', JSON.stringify(this.state.tasks));
     }
 
+    let warningMessage = "";
+    if ((this.state.filter !== "all") && (this.state.tasks.some((t) => { return !t.date; }))) {
+      warningMessage = "Warning: Some tasks without an assigned due date are not being shown!";
+    }
+
+    let date = new Date();
+    let minDateISOString = date.toISOString().slice(0,10);
+
     return (
         <div id={"main"}>
           <div id={"optionsPane"}>
@@ -136,6 +141,8 @@ class App extends Component {
 
           </div>
           <div id={"taskPane"}>
+
+            <InfoTile message={warningMessage}/>
 
             <Overview tasks={this.state.tasks} deleteFunction={this.deleteTask} sort={this.state.sort} filter={this.state.filter}/>
 
@@ -154,10 +161,11 @@ class App extends Component {
 
                   type={"date"}
                   id={"dateInput"}
+                  min={minDateISOString}
                   //value={this.state.task.date}
                   onChange={this.handleDateChange}
                 />
-              <select onChange={this.handlePriorityChange} defaultValue={"0"}>
+              <select id={"priorityInput"} onChange={this.handlePriorityChange} value={this.state.task.priority} /*defaultValue={"0"}*/>
                 <option value="0">No Priority</option>
                 <option value="1">Low</option>
                 <option value="2">Medium</option>
