@@ -30,16 +30,6 @@ class Options extends Component {
                 <br/>
                 <br/>
                 <br/>
-                {
-                    // todo filter by selector
-                    // all (default)
-                    // today
-                    // this week
-                    // todo sort by selector
-                    // sort by creation order (default)
-                    // sort by date
-                    // sort by priority
-                }
                 <input type="radio" id="creation" name="sort" value="creation" onChange={this.handleSortChange} defaultChecked={true} />
                     <label htmlFor="creation">Creation Order</label>
                 <br/>

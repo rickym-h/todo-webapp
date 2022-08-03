@@ -108,7 +108,7 @@ class App extends Component {
           </div>
           <div id={"taskPane"}>
 
-            <Overview tasks={this.state.tasks} deleteFunction={this.deleteTask}/>
+            <Overview tasks={this.state.tasks} deleteFunction={this.deleteTask} sort={this.state.sort} filter={this.state.filter}/>
 
             <form onSubmit={this.onSubmitTask} id={"newTaskInterface"}>
               <label htmlFor={"taskInput"}>New Task</label>
@@ -119,13 +119,16 @@ class App extends Component {
                   onChange={this.handleTextChange}
                   required={true}
               />
+              {//todo make date require not past
+              }
               <input
-                  type={"datetime-local"}
+
+                  type={"date"}
                   id={"dateInput"}
                   //value={this.state.task.date}
                   onChange={this.handleDateChange}
                 />
-              <select onChange={this.handlePriorityChange}>
+              <select onChange={this.handlePriorityChange} defaultValue={"0"}>
                 <option value="0">No Priority</option>
                 <option value="1">Low</option>
                 <option value="2">Medium</option>
