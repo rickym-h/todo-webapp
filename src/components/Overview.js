@@ -70,7 +70,7 @@ class Overview extends Component {
                 });
             case "priority":
                 return tasks.sort(function(a,b){
-                    return a.priority - b.priority;
+                    return b.priority - a.priority;
                 });
             default:
                 console.log("ERROR - FILTER METHOD NOT RECOGNISED: " + this.props.filter)
