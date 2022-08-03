@@ -57,13 +57,8 @@ class Overview extends Component {
                 });
             case "date":
                 return tasks.sort(function(a,b){
-                    if (!a.date || !b.date) {
-                        console.log("task with no valid date")
-                        if (!a.date) {
-                            return -1;
-                        }
-                        return 0;
-                    }
+                    if (!a.date) {return -1}
+                    if (!b.date) {return 1}
                     a = new Date(a.date)
                     b = new Date(b.date)
                     return a - b;
