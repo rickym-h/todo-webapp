@@ -12,10 +12,11 @@ class Overview extends Component {
         this.props.deleteFunction(id)
     }
 
-    datesAreOnSameDay = (first, second) =>
-        first.getFullYear() === second.getFullYear() &&
+    datesAreOnSameDay = (first, second) => {
+        return first.getFullYear() === second.getFullYear() &&
         first.getMonth() === second.getMonth() &&
         first.getDate() === second.getDate();
+    }
 
     datesAreWithinWeek = (first, second) => {
         first = new Date(first.getFullYear(), first.getMonth(), first.getDate());
@@ -46,12 +47,45 @@ class Overview extends Component {
         }
     }
 
+    sortTasks = (tasks) => {
+        switch (this.props.sort) {
+            case "creation":
+                return tasks.sort(function(a,b){
+                    a = new Date(a.creationDate)
+                    b = new Date(b.creationDate)
+                    return a - b;
+                });
+            case "date":
+                return tasks.sort(function(a,b){
+                    if (!a.date || !b.date) {
+                        console.log("task with no valid date")
+                        if (!a.date) {
+                            return -1;
+                        }
+                        return 0;
+                    }
+                    a = new Date(a.date)
+                    b = new Date(b.date)
+                    return a - b;
+                });
+            case "priority":
+                return tasks.sort(function(a,b){
+                    return a.priority - b.priority;
+                });
+            default:
+                console.log("ERROR - FILTER METHOD NOT RECOGNISED: " + this.props.filter)
+                return tasks;
+        }
+    }
+
     render() {
         let myTasks = this.props.tasks;
         // filter out non-needed tasks
         myTasks = this.getValidTasks(myTasks);
 
         // sort by sort method
+        myTasks = this.sortTasks(myTasks);
+
 
 
         return (
