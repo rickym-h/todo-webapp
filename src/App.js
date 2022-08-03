@@ -118,12 +118,17 @@ class App extends Component {
     }
   }
 
-  render() {
-
-    // set localstorage
-    if (this.isLocalStorageAvailable()) {
-      window.localStorage.setItem('tasks', JSON.stringify(this.state.tasks));
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.tasks !== this.state.tasks) {
+      // Tasks has updated
+      if (this.isLocalStorageAvailable()) {
+        window.localStorage.setItem('tasks', JSON.stringify(this.state.tasks));
+        console.log("updated localstorage")
+      }
     }
+  }
+
+  render() {
 
     let warningMessage = "";
     if ((this.state.filter !== "all") && (this.state.tasks.some((t) => { return !t.date; }))) {
@@ -144,7 +149,6 @@ class App extends Component {
 
             <InfoTile message={warningMessage}/>
 
-            <Overview tasks={this.state.tasks} deleteFunction={this.deleteTask} sort={this.state.sort} filter={this.state.filter}/>
 
             <form onSubmit={this.onSubmitTask} id={"newTaskInterface"}>
               <label htmlFor={"taskInput"}>New Task</label>
@@ -174,6 +178,8 @@ class App extends Component {
               </select>
               <button type={"submit"}>Add Task</button>
             </form>
+            <Overview tasks={this.state.tasks} deleteFunction={this.deleteTask} sort={this.state.sort} filter={this.state.filter}/>
+
           </div>
         </div>
     )
