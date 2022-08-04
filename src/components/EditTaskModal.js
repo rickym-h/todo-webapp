@@ -48,7 +48,6 @@ class EditTaskModal extends Component {
                 })
                 break;
             default:
-                console.log("ERROR - form id change not recognised")
         }
     }
 
@@ -67,15 +66,13 @@ class EditTaskModal extends Component {
             return null;
         }
 
-        console.log("CURRENT TASK: " + this.state.currentTask)
-
         let date = new Date();
         let minDateISOString = date.toISOString().slice(0,10);
         return (
             <div className={"modal"}>
                 <div className={"modal-content"}>
                     <div className={"modal-header"}>
-                        {/*<h4 className={"modal-title"}>{this.state.task.id}</h4>*/}
+                        <h4 className={"modal-title"}>Edit Task</h4>
                     </div>
                     <div className={"modal-body"}>
 
@@ -106,11 +103,6 @@ class EditTaskModal extends Component {
                                 <option value="4">ASAP</option>
                             </select>
                         </form>
-
-
-                        <p>{this.state.currentTask.text}</p>
-                        <p>{this.state.currentTask.date}</p>
-                        <p>{this.state.currentTask.priority}</p>
                     </div>
                     <div className={"modal-footer"}>
                         <button className={"modal-button"} form={"editTaskForm"} onClick={this.handleEditTask}>Close</button>

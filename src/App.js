@@ -30,7 +30,7 @@ class App extends Component {
         try {
           this.state.tasks = JSON.parse(window.localStorage.getItem('tasks'));
         } catch {
-          console.log("Failed to load localstorage data...")
+          console.log("ERROR: Failed to load localstorage data...")
           this.state.tasks = [];
         }
       }
@@ -88,7 +88,6 @@ class App extends Component {
   };
 
   deleteTask = (taskID) => {
-    console.log("CALLED TO DELETE TASK " + taskID)
     const filteredTasks = this.state.tasks.filter(t => (t.id !== taskID));
     this.setState({
       tasks: filteredTasks
@@ -101,18 +100,15 @@ class App extends Component {
 
 
   editTask = (taskID) => {
-    console.log("CALLED TO EDIT TASK " + taskID)
 
     let task = JSON.stringify(this.getTaskByID(taskID))
 
-    console.log("setting app.js currentEditingTask to: " + task)
     this.setState({
       currentEditingTask: {task}
     })
   }
 
   submitTaskEdit = (task) => {
-    console.log("APP HAS RECEIVED EDIT INSTRUCTION")
 
     let filteredTasks = this.state.tasks.filter(t => (t.id !== task.id));
     filteredTasks.push(task);
@@ -123,14 +119,12 @@ class App extends Component {
   }
 
   changeSort = (sortMethod) => {
-    console.log("Changing sort method to: " + sortMethod);
     this.setState({
       sort: sortMethod,
     });
   }
 
   changeFilter = (filterMethod) => {
-    console.log("Changing filter method to: " + filterMethod);
     this.setState({
       filter: filterMethod,
     });
@@ -152,7 +146,6 @@ class App extends Component {
       // Tasks has updated
       if (this.isLocalStorageAvailable()) {
         window.localStorage.setItem('tasks', JSON.stringify(this.state.tasks));
-        console.log("updated localstorage")
       }
     }
   }
