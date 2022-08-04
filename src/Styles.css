@@ -1,3 +1,39 @@
+body, html{
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+
+}
+input {
+    margin: 10px;
+}
+
+button {
+    border: none;
+    align-items: flex-start;
+    outline: none;
+    background-color: #52ab98;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+}
+button:hover {
+    background-color: #2b6777;
+}
+
+input {
+    padding: 10px;
+    border-radius: 5px;
+}
+
+select {
+    width: 80%;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px;
+}
+
 :root {
     --main-background: #ffffff;
     --secondary-background: #f2f2f2;
@@ -7,22 +43,34 @@
 }
 
 #headerBar {
+    padding: 20px;
+
     background-color: var(--main-pop-colour);
+    color: var(--secondary-background);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 #main {
+    background-color: var(--main-background);
     display: flex;
-    flex-direction: row;
-    flex: 1 100%;
-    height: 100%;
+
+    justify-content: center;
 }
 
 #optionsPane {
     background-color: var(--secondary-background);
+    width: 300px;
+    min-width: 250px;
+    padding: 20px;
 }
 
 #taskPane {
     background-color: var(--main-background);
+    width: 900px;
+    padding: 20px 40px;
+    margin: 0 auto;
 }
 
 #footerBar {
@@ -31,15 +79,16 @@
 
 #root {
     background-color: purple;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    position: fixed;
 }
 
+
 #newTaskInterface {
-    background-color: var(--main-pop-colour);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
 }
 
 .overview-container {
@@ -50,5 +99,9 @@
 .task-item {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+
     background-color: var(--secondary-background);
 }

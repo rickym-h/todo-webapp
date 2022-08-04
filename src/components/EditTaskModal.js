@@ -105,7 +105,7 @@ class EditTaskModal extends Component {
                         </form>
                     </div>
                     <div className={"modal-footer"}>
-                        <button className={"modal-button"} form={"editTaskForm"} onClick={this.handleEditTask}>Close</button>
+                        <button className={"modal-button"} form={"editTaskForm"} onClick={this.handleEditTask}>Submit</button>
                     </div>
                 </div>
             </div>
