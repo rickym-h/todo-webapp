@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import "./Modal.css";
 
+
 class EditTaskModal extends Component {
     // eslint-disable-next-line no-useless-constructor
     constructor(props) {
@@ -19,7 +20,6 @@ class EditTaskModal extends Component {
         if (!this.props.taskToEdit) {
             return;
         }
-        console.log("PROPS CHANGE VALID - SETTING STATE")
         this.setState({
             currentTask: JSON.parse(this.props.taskToEdit.task),
         })
@@ -54,7 +54,6 @@ class EditTaskModal extends Component {
 
     handleEditTask = (event) => {
         event.preventDefault()
-        console.log(event)
         this.props.finishEdit(this.state.currentTask)
         this.setState({
             currentTask: null,

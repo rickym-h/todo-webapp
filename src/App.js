@@ -3,19 +3,19 @@ import Overview from "./components/Overview"
 import Options from "./components/Options"
 import InfoTile from "./components/InfoTile";
 import EditTaskModal from "./components/EditTaskModal";
-import uniqid from "uniqid";
+import uniqueID from "uniqid";
 import './Styles.css'
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       task: {
         text: '',
         date: '',
         priority: '0',
-        id: uniqid()
+        id: uniqueID()
       },
       tasks: [],
       filter: "all",
@@ -81,7 +81,7 @@ class App extends Component {
         text: '',
         date: '',
         priority: '0',
-        id: uniqid()
+        id: uniqueID()
       },
     });
 
@@ -130,8 +130,8 @@ class App extends Component {
     });
   }
 
-  isLocalStorageAvailable =() => {
-    var test = 'test';
+  isLocalStorageAvailable = () => {
+    let test = 'test';
     try {
       localStorage.setItem(test, test);
       localStorage.removeItem(test);
@@ -141,7 +141,7 @@ class App extends Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate = (prevProps, prevState, snapshot) => {
     if (prevState.tasks !== this.state.tasks) {
       // Tasks has updated
       if (this.isLocalStorageAvailable()) {
@@ -162,49 +162,58 @@ class App extends Component {
     let minDateISOString = date.toISOString().slice(0,10);
 
     return (
-        <div id={"main"}>
-          <div id={"optionsPane"}>
-
-            <Options updateSort={this.changeSort} updateFilter={this.changeFilter}/>
-
+        <div>
+          <div id={"headerBar"}>
+            <h1>My Todo Webapp</h1>
           </div>
-          <div id={"taskPane"}>
+          <div id={"main"}>
+            <div id={"optionsPane"}>
 
-            <EditTaskModal taskToEdit={this.state.currentEditingTask} finishEdit={this.submitTaskEdit}/>
+              <Options updateSort={this.changeSort} updateFilter={this.changeFilter}/>
 
-            <InfoTile message={warningMessage}/>
+            </div>
+            <div id={"taskPane"}>
+
+              <EditTaskModal taskToEdit={this.state.currentEditingTask} finishEdit={this.submitTaskEdit}/>
+
+              <InfoTile message={warningMessage}/>
 
 
-            <form onSubmit={this.onSubmitTask} id={"newTaskInterface"}>
-              <label htmlFor={"taskInput"}>New Task</label>
-              <input
-                  type={"text"}
-                  id={"taskInput"}
-                  value={this.state.task.text}
-                  onChange={this.handleTextChange}
-                  required={true}
-              />
-              <input
-
-                  type={"date"}
-                  id={"dateInput"}
-                  min={minDateISOString}
-                  //value={this.state.task.date}
-                  onChange={this.handleDateChange}
+              <form onSubmit={this.onSubmitTask} id={"newTaskInterface"}>
+                <label htmlFor={"taskInput"}>New Task</label>
+                <input
+                    type={"text"}
+                    id={"taskInput"}
+                    value={this.state.task.text}
+                    onChange={this.handleTextChange}
+                    required={true}
                 />
-              <select id={"priorityInput"} onChange={this.handlePriorityChange} value={this.state.task.priority} /*defaultValue={"0"}*/>
-                <option value="0">No Priority</option>
-                <option value="1">Low</option>
-                <option value="2">Medium</option>
-                <option value="3">High</option>
-                <option value="4">ASAP</option>
-              </select>
-              <button type={"submit"}>Add Task</button>
-            </form>
-            <Overview tasks={this.state.tasks} deleteFunction={this.deleteTask} sort={this.state.sort} filter={this.state.filter} editTask={this.editTask}/>
+                <input
 
+                    type={"date"}
+                    id={"dateInput"}
+                    min={minDateISOString}
+                    //value={this.state.task.date}
+                    onChange={this.handleDateChange}
+                />
+                <select id={"priorityInput"} onChange={this.handlePriorityChange} value={this.state.task.priority} /*defaultValue={"0"}*/>
+                  <option value="0">No Priority</option>
+                  <option value="1">Low</option>
+                  <option value="2">Medium</option>
+                  <option value="3">High</option>
+                  <option value="4">ASAP</option>
+                </select>
+                <button type={"submit"}>Add Task</button>
+              </form>
+              <Overview tasks={this.state.tasks} deleteFunction={this.deleteTask} sort={this.state.sort} filter={this.state.filter} editTask={this.editTask}/>
+
+            </div>
+          </div>
+          <div id={"footerBar"}>
+            <h1>View Source Code</h1>
           </div>
         </div>
+
     )
   };
 }
