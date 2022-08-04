@@ -11,6 +11,10 @@ class Overview extends Component {
         this.props.deleteFunction(id)
     }
 
+    handleEditTaskEvent = (id) => {
+        this.props.editTask(id)
+    }
+
     datesAreOnSameDay = (first, second) => {
         return first.getFullYear() === second.getFullYear() &&
         first.getMonth() === second.getMonth() &&
@@ -89,6 +93,7 @@ class Overview extends Component {
                             <p>{t.text}</p>
                             <p>{t.date}</p>
                             <div>{t.priority}</div>
+                            <button type={"button"} id={"edit"+t.id} onClick={()=>this.handleEditTaskEvent(t.id)}>Click to Edit!</button>
                         </div>
                     );
                 })}

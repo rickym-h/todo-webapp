@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import Overview from "./components/Overview"
 import Options from "./components/Options"
 import InfoTile from "./components/InfoTile";
+import EditTaskModal from "./components/EditTaskModal";
 import uniqid from "uniqid";
 import './Styles.css'
 
@@ -19,6 +20,7 @@ class App extends Component {
       tasks: [],
       filter: "all",
       sort: "creation",
+      currentEditingTask: "",
 
     };
 
@@ -93,6 +95,33 @@ class App extends Component {
     })
   }
 
+  getTaskByID = (id) => {
+    return this.state.tasks.find((t)=>(t.id === id))
+  }
+
+
+  editTask = (taskID) => {
+    console.log("CALLED TO EDIT TASK " + taskID)
+
+    let task = JSON.stringify(this.getTaskByID(taskID))
+
+    console.log("setting app.js currentEditingTask to: " + task)
+    this.setState({
+      currentEditingTask: {task}
+    })
+  }
+
+  submitTaskEdit = (task) => {
+    console.log("APP HAS RECEIVED EDIT INSTRUCTION")
+
+    let filteredTasks = this.state.tasks.filter(t => (t.id !== task.id));
+    filteredTasks.push(task);
+    this.setState({
+      tasks: filteredTasks,
+      currentEditingTask: null,
+    })
+  }
+
   changeSort = (sortMethod) => {
     console.log("Changing sort method to: " + sortMethod);
     this.setState({
@@ -128,6 +157,7 @@ class App extends Component {
     }
   }
 
+
   render() {
 
     let warningMessage = "";
@@ -147,6 +177,8 @@ class App extends Component {
           </div>
           <div id={"taskPane"}>
 
+            <EditTaskModal taskToEdit={this.state.currentEditingTask} finishEdit={this.submitTaskEdit}/>
+
             <InfoTile message={warningMessage}/>
 
 
@@ -159,8 +191,6 @@ class App extends Component {
                   onChange={this.handleTextChange}
                   required={true}
               />
-              {//todo make date require not past
-              }
               <input
 
                   type={"date"}
@@ -178,7 +208,7 @@ class App extends Component {
               </select>
               <button type={"submit"}>Add Task</button>
             </form>
-            <Overview tasks={this.state.tasks} deleteFunction={this.deleteTask} sort={this.state.sort} filter={this.state.filter}/>
+            <Overview tasks={this.state.tasks} deleteFunction={this.deleteTask} sort={this.state.sort} filter={this.state.filter} editTask={this.editTask}/>
 
           </div>
         </div>
