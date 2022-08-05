@@ -180,7 +180,7 @@ class App extends Component {
 
 
               <form onSubmit={this.onSubmitTask} id={"newTaskInterface"}>
-                <label htmlFor={"taskInput"}>New Task</label>
+                <label htmlFor={"taskInput"}>Create Task</label>
                 <input
                     type={"text"}
                     id={"taskInput"}
@@ -209,8 +209,9 @@ class App extends Component {
 
             </div>
           </div>
+
           <div id={"footerBar"}>
-            <h1>View Source Code</h1>
+            <h4><a href={"https://github.com/rickym-h/todo-webapp"}>View Source Code</a></h4>
           </div>
         </div>
 

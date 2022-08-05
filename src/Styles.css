@@ -21,7 +21,7 @@ input {
 }
 
 button {
-    border: none;
+    border: 1px solid black;
     align-items: flex-start;
     outline: none;
     background-color: var(--main-background);
@@ -79,6 +79,8 @@ select {
 }
 
 #footerBar {
+    display: flex;
+    justify-content: center;
     background-color: var(--main-pop-colour);
 }
 
@@ -96,19 +98,3 @@ select {
     text-align: center;
 }
 
-.overview-container {
-    display: flex;
-    flex-direction: column;
-}
-
-.task-item {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    margin: 5px;
-    border-radius: 5px;
-
-    background-color: var(--main-pop-colour);
-}

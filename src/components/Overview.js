@@ -86,17 +86,31 @@ class Overview extends Component {
 
         return (
             <div className={"overview-container"}>
-                {myTasks.map((t) => {
-                    return (
-                        <div key={t.id} className={"task-item"}>
-                            <button type={"button"} id={t.id} onClick={()=>this.handleDeleteTaskEvent(t.id)}>Click to Complete!</button>
-                            <p>{t.text}</p>
-                            <p>{t.date}</p>
-                            <div>{t.priority}</div>
-                            <button type={"button"} id={"edit"+t.id} onClick={()=>this.handleEditTaskEvent(t.id)}>Click to Edit!</button>
-                        </div>
-                    );
-                })}
+                <table>
+                    <tr>
+                        <th>Delete Task</th>
+                        <th>Task Information</th>
+                        <th>Date</th>
+                        <th>Priority</th>
+                        <th>Edit</th>
+                    </tr>
+                    {myTasks.map((t) => {
+                        return (
+                            <tr key={t.id}>
+                                <th><button type={"button"} id={t.id} onClick={()=>this.handleDeleteTaskEvent(t.id)}>Click to Complete!</button></th>
+                                <th><p>{t.text}</p></th>
+                                <th><p>{t.date}</p></th>
+                                <th><div>{t.priority}</div></th>
+                                <th><button type={"button"} id={"edit"+t.id} onClick={()=>this.handleEditTaskEvent(t.id)}>Click to Edit!</button></th>
+                                {/*<td><button type={"button"} id={t.id} onClick={()=>this.handleDeleteTaskEvent(t.id)}>Click to Complete!</button></td>*/}
+                                {/*<td><p>{t.text}</p></td>*/}
+                                {/*<td><p>{t.date}</p></td>*/}
+                                {/*<td><div>{t.priority}</div></td>*/}
+                                {/*<td><button type={"button"} id={"edit"+t.id} onClick={()=>this.handleEditTaskEvent(t.id)}>Click to Edit!</button></td>*/}
+                            </tr>
+                        );
+                    })}
+                </table>
             </div>
         )
     }
