@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PriorityDisplay from "./PriorityDisplay";
 
 class Overview extends Component {
     // eslint-disable-next-line no-useless-constructor
@@ -100,7 +101,8 @@ class Overview extends Component {
                                 <th><button type={"button"} id={t.id} onClick={()=>this.handleDeleteTaskEvent(t.id)}>Click to Complete!</button></th>
                                 <th><p>{t.text}</p></th>
                                 <th><p>{t.date}</p></th>
-                                <th><div>{t.priority}</div></th>
+                                {/*<th><div>{t.priority}</div></th>*/}
+                                <th><PriorityDisplay value={t.priority}/></th>
                                 <th><button type={"button"} id={"edit"+t.id} onClick={()=>this.handleEditTaskEvent(t.id)}>Click to Edit!</button></th>
                                 {/*<td><button type={"button"} id={t.id} onClick={()=>this.handleDeleteTaskEvent(t.id)}>Click to Complete!</button></td>*/}
                                 {/*<td><p>{t.text}</p></td>*/}
