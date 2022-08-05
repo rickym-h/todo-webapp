@@ -1,13 +1,13 @@
 {
-  "main.css": "/rickym-h/todo-webapp/static/css/main.2dabdef6.chunk.css",
-  "main.js": "/rickym-h/todo-webapp/static/js/main.bd290f76.chunk.js",
-  "main.js.map": "/rickym-h/todo-webapp/static/js/main.bd290f76.chunk.js.map",
-  "static/js/1.682b0dce.chunk.js": "/rickym-h/todo-webapp/static/js/1.682b0dce.chunk.js",
-  "static/js/1.682b0dce.chunk.js.map": "/rickym-h/todo-webapp/static/js/1.682b0dce.chunk.js.map",
-  "runtime~main.js": "/rickym-h/todo-webapp/static/js/runtime~main.a4dc9f47.js",
-  "runtime~main.js.map": "/rickym-h/todo-webapp/static/js/runtime~main.a4dc9f47.js.map",
-  "static/css/main.2dabdef6.chunk.css.map": "/rickym-h/todo-webapp/static/css/main.2dabdef6.chunk.css.map",
-  "index.html": "/rickym-h/todo-webapp/index.html",
-  "precache-manifest.cccb5df0c4a694cec83cf98f4bcad9f8.js": "/rickym-h/todo-webapp/precache-manifest.cccb5df0c4a694cec83cf98f4bcad9f8.js",
-  "service-worker.js": "/rickym-h/todo-webapp/service-worker.js"
+  "main.css": "/todo-webapp/static/css/main.2dabdef6.chunk.css",
+  "main.js": "/todo-webapp/static/js/main.bd290f76.chunk.js",
+  "main.js.map": "/todo-webapp/static/js/main.bd290f76.chunk.js.map",
+  "static/js/1.682b0dce.chunk.js": "/todo-webapp/static/js/1.682b0dce.chunk.js",
+  "static/js/1.682b0dce.chunk.js.map": "/todo-webapp/static/js/1.682b0dce.chunk.js.map",
+  "runtime~main.js": "/todo-webapp/static/js/runtime~main.9ee5494e.js",
+  "runtime~main.js.map": "/todo-webapp/static/js/runtime~main.9ee5494e.js.map",
+  "static/css/main.2dabdef6.chunk.css.map": "/todo-webapp/static/css/main.2dabdef6.chunk.css.map",
+  "index.html": "/todo-webapp/index.html",
+  "precache-manifest.124ced75b8589211d949b8cec3cd6c95.js": "/todo-webapp/precache-manifest.124ced75b8589211d949b8cec3cd6c95.js",
+  "service-worker.js": "/todo-webapp/service-worker.js"
 }
