@@ -16,7 +16,7 @@ class PriorityDisplay extends Component {
             4: "ASAP"
         }
         return (
-            <div>{stringRep[this.props.value]}</div>
+            <div className={"priority-"+this.props.value}>{stringRep[this.props.value]}</div>
         )
     }
 

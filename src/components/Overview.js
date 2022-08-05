@@ -101,15 +101,9 @@ class Overview extends Component {
                                 <th><button type={"button"} id={t.id} onClick={()=>this.handleDeleteTaskEvent(t.id)}>Click to Complete!</button></th>
                                 <th><p>{t.text}</p></th>
                                 <th><p>{t.date}</p></th>
-                                {/*<th><div>{t.priority}</div></th>*/}
                                 <th><PriorityDisplay value={t.priority}/></th>
                                 <th><button type={"button"} id={"edit"+t.id} onClick={()=>this.handleEditTaskEvent(t.id)}>Click to Edit!</button></th>
-                                {/*<td><button type={"button"} id={t.id} onClick={()=>this.handleDeleteTaskEvent(t.id)}>Click to Complete!</button></td>*/}
-                                {/*<td><p>{t.text}</p></td>*/}
-                                {/*<td><p>{t.date}</p></td>*/}
-                                {/*<td><div>{t.priority}</div></td>*/}
-                                {/*<td><button type={"button"} id={"edit"+t.id} onClick={()=>this.handleEditTaskEvent(t.id)}>Click to Edit!</button></td>*/}
-                            </tr>
+                          </tr>
                         );
                     })}
                 </table>
