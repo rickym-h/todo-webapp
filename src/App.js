@@ -178,7 +178,7 @@ class App extends Component {
 
               <InfoTile message={warningMessage}/>
 
-
+              <h2>Create Task</h2>
               <form onSubmit={this.onSubmitTask} id={"newTaskInterface"}>
                 <label htmlFor={"taskInput"}>Create Task</label>
                 <input
